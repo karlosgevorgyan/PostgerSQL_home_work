@@ -1,0 +1,160 @@
+--INNER JOIN
+
+SELECT product_name, suppliers.company_name, units_in_stock
+FROM products
+INNER JOIN suppliers ON products.supplier_id = suppliers.supplier_id
+ORDER BY units_in_stock DESC
+-- (Сколько едениц товоров в продаже по категориям товоров)
+
+SELECT category_name, SUM(units_in_stock)
+FROM products
+INNER JOIN categories ON products.category_id = categories.category_id
+GROUP BY category_name
+ORDER BY SUM(units_in_stock) DESC
+LIMIT 5
+
+-------------------------------------------------------------------------
+
+
+
+--(продоется товоров больше по сумму 5000)
+SELECT category_name, SUM(unit_price * units_in_stock)
+FROM products
+INNER JOIN categories ON products.category_id = categories.category_id
+WHERE discontinued <> 1
+GROUP BY category_name
+HAVING SUM(unit_price * units_in_stock) > 5000
+ORDER BY SUM(unit_price * units_in_stock ) DESC
+
+
+------------------------------------------------------------------------------
+
+--(Заказы и работники)
+SELECT order_id, customer_id, first_name, last_name
+FROM orders
+INNER JOIN employees ON orders.employee_id = employees.employee_id
+
+
+-------------------------------------------------------------------------
+
+--(Поместить дату когда был закакз,каой товар?,  куда достовить?, цену,кол-во и скидку)
+
+SELECT order_date, product_name, ship_country, products.unit_price, quantity,discount
+FROM orders
+INNER JOIN order_details ON orders.order_id = order_details.order_id
+INNER JOIN products ON order_details.product_id = products.product_id
+
+
+-------------------------------------------------------------------------------------
+
+
+
+SELECT contact_name, company_name, phone, first_name, last_name, title,
+	 	order_date,product_name, ship_country, products.unit_price, quantity, discount
+FROM orders
+JOIN order_details ON orders.order_id = order_details.order_id
+JOIN products ON order_details.product_id = products.product_id
+JOIN customers ON orders.customer_id = customers.customer_id
+JOIN employees ON orders.employee_id = employees.employee_id
+WHERE ship_country = 'USA'
+
+
+-- КРАТКО (USING)
+SELECT contact_name, company_name, phone, first_name, last_name, title,
+	 	order_date,product_name, ship_country, products.unit_price, quantity, discount
+FROM orders
+JOIN order_details USING(order_id) -- ON orders.order_id = order_details.order_id
+JOIN products USING(product_id)    -- ON order_details.product_id = products.product_id
+JOIN customers USING(customer_id)  -- ON orders.customer_id = customers.customer_id
+JOIN employees USING(employee_id)  -- ON orders.employee_id = employees.employee_id
+WHERE ship_country = 'USA'
+
+
+-- еще кароче но не использовать
+SELECT order_id, customer_id, first_name, last_name, title
+FROM orders
+NATURAL JOIN employees
+-----------------------------------------------------------------------------
+
+
+
+-- USING & NATURAL JOIN(короткий вариант...)
+
+SELECT contact_name, company_name, phone, first_name, last_name, title,
+	 	order_date,product_name, ship_country, products.unit_price, quantity, discount
+FROM orders
+JOIN order_details USING(order_id) 
+JOIN products  USING(product_id)
+JOIN customers USING(customer_id)
+JOIN employees USING(employee_id)
+WHERE ship_country = 'USA'
+
+SELECT order_id, customer_id, first_name, last_name, title
+FROM orders
+NATURAL JOIN employees
+
+
+
+------------------------------------------------------------------------------
+
+-- LEFT, RIGHT JOIN
+
+SELECT company_name, product_name
+FROM suppliers
+LEFT JOIN products ON suppliers.supplier_id = products.supplier_id  --(тоже самое(inner join))
+
+
+-----------------------------------------------------------------
+
+
+
+SELECT  company_name, order_id
+FROM customers
+LEFT JOIN orders ON orders.customer_id = customers.customer_id
+WHERE order_id IS NULL
+
+
+
+-----------------------------------------------------------------
+
+
+
+SELECT last_name, order_id
+FROM employees
+LEFT JOIN orders ON orders.employee_id = employees.employee_id
+WHERE order_id IS NULL
+
+
+
+----------------------------------------------------------------
+
+
+SELECT  company_name, order_id
+FROM orders
+RIGHT JOIN customers ON orders.customer_id = customers.customer_id
+WHERE order_id IS NULL
+
+
+_________________________________________________________________________________
+
+-- AS(назночить имя калонки) Псевдоним
+
+SELECT COUNT(*) AS employees_count
+FROM employees
+
+
+---------------------
+
+
+SELECT COUNT(DISTINCT country) AS country
+FROM employees
+
+
+---------------------
+
+
+SELECT category_id, SUM(units_in_stock) AS units_in_stock
+FROM products
+GROUP BY category_id
+ORDER BY units_in_stock DESC
+LIMIT 5

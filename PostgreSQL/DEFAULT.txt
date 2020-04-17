@@ -1,0 +1,23 @@
+CREATE TABLE customer
+(
+ 	customer_id serial,
+	fullname text,
+	status char DEFAULT 'r',
+	
+	CONSTRAINT PK_CUSTOMER_CUSTOMER_ID PRIMARY KEY (customer_id),
+	CONSTRAINT chk_cust_status CHECK (status = 'r' OR status = 'p')
+)
+-- satus будет 'r' или 'p' 
+
+INSERT INTO customer (fullname)
+VALUES 
+('NAME')
+
+-- ('NAME','d') ошибка
+
+SELECT * FROM customer
+
+
+-- удалить ограничение
+ALTER TABLE customer
+ALTER COLUMN status DROP DEFAULT

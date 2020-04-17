@@ -1,0 +1,10 @@
+SELECT COUNT (ADDRESS)
+FROM employees
+
+
+SELECT COUNT (DISTINCT ADDRESS)
+FROM employees
+
+
+
+--> Ete kan krknvox qaxaqner apa COUNTI het ogtagorcel(DISTINCT)

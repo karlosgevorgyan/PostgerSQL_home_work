@@ -1,0 +1,19 @@
+SELECT DISTINCT country
+FROM customers
+ORDER BY country ASC -- по возрастанию
+
+SELECT DISTINCT country
+FROM customers
+ORDER BY country DESC -- по убыванию
+
+-------------------------SORT-------------------------------------------
+
+SELECT DISTINCT country,city
+FROM customers
+ORDER BY country DESC, city DESC
+
+SELECT DISTINCT country,city
+FROM customers
+ORDER BY country DESC, city ASC
+
+----------------------------------------------------------------

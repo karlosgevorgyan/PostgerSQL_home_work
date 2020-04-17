@@ -1,0 +1,8 @@
+ALTER_TABLE table_name  --изменить
+ADD COLUMN table_name data_type  --добавить столбец уже сущ...
+RENAME TO new_table_name  --переименовать
+RENAME old_column_name TO new_column_name --переименовать сталбец которий сцщ..
+ALTER COLUMN column_name SET DATA TYPE data_type --изменить тип данных
+DROP TABLE table_name --удалить 
+TRUNCATE TABLE table_name -- удаляет все данные в колонке
+DROP COLUMN column_name --удалить калонку

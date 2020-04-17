@@ -1,0 +1,79 @@
+CREATE TABLE car(
+	car_id INT PRIMARY KEY,
+	car_name VARCHAR(255) NOT NULL,
+	company_name VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE model(
+	model_id INT PRIMARY KEY,
+	models VARCHAR(128) NOT NULL,
+	car_date INT NOT NULL,
+	car_country VARCHAR(255) NOT NULL,
+	car_color VARCHAR(128),
+	engine INT, 
+	fk_model_id INT REFERENCES car(car_id)
+);
+ALTER TABLE model
+ALTER COLUMN engine SET DATA TYPE DOUBLE PRECISION
+
+CREATE TABLE owners(
+	owner_id INT PRIMARY KEY,
+	last_name VARCHAR(128) NOT NULL,
+	first_name VARCHAR(128) NOT NULL,
+	age int NOT NULL
+);
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO owners
+VALUES
+(1,'Frank','Marls','54'),
+(2,'Fyodr','Danis','61'),
+(3,'Mark','Lunk','43'),
+(4,'Tomy','Luts','33'),
+(5,'Igr','Petrovich','42'),
+(6,'John','Kerl','55'),
+(8,'Carl','Manego','28'),
+(9,'Anna','Xachatryan','22'),
+(10,'Lena','Marlovna','30'),
+(11,'Dark','Samer','47'),
+(12,'Said','Duir','59')
+
+
+INSERT INTO model
+VALUES
+(1,'S-class', '2020','Germany','black', '4.8',1),
+(2,'G-55', '2019','Germany','black', '5.5',1),
+(3,'C-class', '2020','Germany','black', '2.5',1),
+(4,'E-class', '2019','Germany','black', '3.5',1),
+(5,'Tuareg', '2017','Germany','black', '2.8',5),
+(6,'Optima', '2017','Japan','white', '2',6),
+(7,'Camry', '2018','Japan','white', '2.4',7),
+(8,'RAV-4', '2017','Japan','blue', '2.2',7),
+(9,'mazda-6', '2005','Japan','white','3.5',9),
+(10,'Logan', '2006','France','white', '1.6',10),
+(11,'M3', '2019','Germany','blue', '2.5',2),
+(12,'M5', '2019','Germany','blue', '3.5',2),
+(13,'X-5', '2019','Germany','blue', '5',2),
+(14,'A-8', '2018','Germany','purple', '4.2',3),
+(15,'Astra-G', '2002','Germany','pink', '1.8',4),
+(16,'RX-420', '2017','Japan','black', '4.2',8),
+(17,'Priora', '2006','Russian','black', '1.4',11),
+(18,'NIVA', '2009','Russian','white', '1.4',11)
+
+INSERT INTO car
+VALUES
+(1,'Mersedes','Daimler AG'),
+(2,'BMW', 'Mini, Rolls-Royce, BMW M, BMW i , Alpina'),
+(3,'Audi', 'Volkswagen Group'),
+(4,'Opel', 'PSA'),
+(5,'Wolksvagen', 'Volkswagen Group'),
+(6,'Kia', 'Hyundai Motor Group'),
+(7,'Toyota', 'Toyota Financial Services'),
+(8,'Lexus', 'Toyota Motor Corporation'),
+(9,'Mazda', 'Mazda (United States)'),
+(10,'RENO', 'Renault Samsung Motors'),
+(11,'LADA', ' ВИС-АВТО, GM-АВТОВАЗ, Лада Ижевск')
+ 
+SELECT * FROM owners

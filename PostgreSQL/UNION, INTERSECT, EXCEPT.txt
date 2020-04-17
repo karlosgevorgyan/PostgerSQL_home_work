@@ -1,0 +1,28 @@
+SELECT country
+FROM customers
+UNION               	-- обеденяет 2 запросы
+SELECT country
+FROM employees
+
+
+SELECT country
+FROM customers
+UNION ALL              
+SELECT country
+FROM employees
+
+------------------------------------------------------------------------
+
+SELECT country
+FROM customers
+INTERSECT 		-- пересиченние
+SELECT country
+FROM suppliers
+
+-------------------------------------------------------------------------
+
+SELECT country
+FROM customers
+EXCEPT    		-- исключенние илиразница         
+SELECT country
+FROM suppliers

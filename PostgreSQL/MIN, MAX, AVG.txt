@@ -1,0 +1,30 @@
+SELECT ship_city, order_date
+FROM orders
+WHERE ship_city = 'London'			 -- самый старый заказ
+ORDER BY order_date 
+
+-- тоже самое(кратко)
+SELECT MIN(order_date)
+FROM orders
+WHERE ship_city = 'London'
+
+==========================================================================
+
+SELECT MIN(order_date)
+FROM orders
+WHERE ship_city = 'London'
+ORDER BY order_date DESC 		       -- самое поздное
+
+SELECT MAX(order_date)
+FROM orders
+WHERE ship_city = 'London'
+
+SELECT AVG(unit_price)
+FROM products					-- среднее цена
+WHERE discontinued <> 1
+
+=====================================================================
+
+SELECT SUM(units_in_stock)
+FROM products    				-- единиц товаров в продаже
+WHERE discontinued <> 1

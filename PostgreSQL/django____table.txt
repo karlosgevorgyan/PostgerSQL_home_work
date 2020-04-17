@@ -1,0 +1,74 @@
+NOP90
+ CREATE TABLE Category
+(
+	cat_id int PRIMARY KEY,
+	cat_name varchar(64) NOT NULL,
+	description text NOT NULL,
+	cat_url TEXT[] NOT NULL
+);
+
+CREATE TABLE Actor
+(
+	actor_id int PRIMARY KEY,
+	actor_name varchar(32) NOT NULL,
+	actor_age int NOT NULL,
+	description text NOT NULL,
+	image bytea NOT NULL
+);
+
+CREATE TABLE Genre
+(
+	genre_id int PRIMARY KEY, 
+	genre_name varchar(32) NOT NULL,
+	description TEXT NOT NULL,
+	genre_url text[] NOT NULL
+);
+
+CREATE TABLE Movie
+(
+	movie_id int PRIMARY KEY,
+	title VARCHAR(64) NOT NULL,
+	tagline VARCHAR(256) NOT NULL,
+	description text NOT NULL,
+	poster text NOT NULL,
+	movie_year INT NOT NULL,
+	country VARCHAR(32) NOT NULL,
+	directors_id int REFERENCES Actor(actor_id),
+	actors_id int REFERENCES Actor(actor_id),
+	genres_id int REFERENCES Genre(genre_id),
+	world_premiere date NOT NULL,
+	fees_in_usa INT NOT NULL,
+	fess_in_world INT NOT NULL,
+	category_id int  REFERENCES Category(cat_id),
+	url text[] NOT NULL,
+	draft boolean NOT NULL
+);
+
+CREATE TABLE MovieShots
+(
+	movieSh_id int PRIMARY KEY,
+	description text NOT NULL,
+	image bytea NOT NULL,
+	fk_movie_id int REFERENCES Movie(movie_id)
+);
+
+CREATE TABLE RatingStar
+(
+	ratingStar_id int PRIMARY KEY,
+	rating_value int NOT NULL
+);
+
+CREATE TABLE Rating
+(
+	rating_id int PRIMARY KEY,
+	star INT REFERENCES RatingStar(ratingStar_id),
+	movie INT REFERENCES Movie(movie_id)
+);
+
+CREATE TABLE Reviews
+(
+	reviews_id int PRIMARY KEY,
+	reviews_name varchar(128) NOT NULL,
+	massing text NOT NULL,
+	movie INT REFERENCES Movie(movie_id)
+)

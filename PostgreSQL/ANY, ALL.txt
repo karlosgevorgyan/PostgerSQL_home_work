@@ -1,0 +1,45 @@
+-- ANY(любой), ALL(самое большое)
+
+-- выбрать все уникальные компании заказчиков
+--которые делали заказы на более чем 40 единиц товаров
+
+SELECT DISTINCT company_name
+FROM customers
+JOIN orders USING(customer_id)      -- прощее вариант
+JOIN order_details USING(order_id)
+WHERE quantity > 40
+
+SELECT customer_id
+FROM orders
+JOIN order_details USING(order_id)  -- подзапрос
+WHERE quantity > 40
+
+SELECT DISTINCT company_name
+FROM customers
+WHERE customer_id = ANY(
+	SELECT customer_id				-- объединение
+	FROM orders
+	JOIN order_details USING(order_id)
+	WHERE quantity > 40
+)
+
+
+
+
+-- выбрать такие продукты кол-во которых больше средного по заказом
+
+SELECT AVG(quantity) -- выбрать среднее...
+FROM order_details   --из...
+GROUP BY product_id  --группировать...
+
+
+SELECT DISTINCT product_name, quantity
+FROM products
+JOIN order_details USING(product_id) --джоинить по...
+WHERE quantity > ALL(
+				SELECT AVG(quantity)
+				FROM order_details
+				GROUP BY product_id
+)
+
+

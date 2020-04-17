@@ -1,0 +1,37 @@
+-- Управление Таблицами
+CREATE TABLE student
+(
+	student_id serial,
+	first_name varchar,
+	last_name varchar,
+	birthday varchar,
+	phone varchar
+);
+
+CREATE TABLE cathedra
+(
+	cathedra_id serial,
+	cathedra_name varchar,
+	dean varchar
+)
+
+ALTER TABLE student
+ADD COLUMN middle_name varchar;
+
+ALTER TABLE student
+ADD COLUMN rating float;
+
+ALTER TABLE student
+ADD COLUMN enrolled date;
+
+ALTER TABLE student
+DROP COLUMN middle_name;
+
+ALTER TABLE student
+RENAME TO chair;
+
+ALTER TABLE chair
+RENAME  rating TO star;
+
+ALTER TABLE chair
+ALTER COLUMN rating TO star;

@@ -1,0 +1,21 @@
+SELECT *
+FROM customers
+WHERE country = 'Mexico' OR country = 'Germany' OR country = 'USA' OR country = 'Canada'
+-- тоже самое(кратко...)
+SELECT*
+FROM customers
+WHERE country IN ('Mexico','Germany','USA', 'Canada' )
+
+-------------------------------------------------------------
+SELECT *
+FROM products
+WHERE category_id IN (1,2,3,4,5)
+
+-------------------------------------------------------------
+SELECT *
+FROM customers
+WHERE country NOT IN ('Mexico','Germany','USA', 'Canada' )
+
+SELECT *
+FROM products
+WHERE category_id NOT IN (1,2,3,4,5)

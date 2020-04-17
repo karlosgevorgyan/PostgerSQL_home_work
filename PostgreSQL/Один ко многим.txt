@@ -1,0 +1,30 @@
+ALTER TABLE books
+ADD COLUMN fk_books_id
+ADD CONSTRAINT fk_books_author
+FOREIGN KEY(fk_books_id) REFERENCES books(books_id)
+---------------------------------------------------------
+CREATE TABLE books
+(
+	books_id int PRIMARY KEY,
+	tittle varchar(128) NOT NULL,
+	book_header text NOT NULL,
+	fk_books_id int REFERENCES author(author_id) NOT NULL
+);
+====================================================================
+INSERT INTO books
+VALUES
+(1, 'Spanvac axavni', 'ssssss aaaaaa',1),
+(2, 'Samvel', 'lllllllllllll',2),
+(3, 'Anhayt mard', 'AAAAAAAAAAAAAA',2),
+(4, 'Korac ser', 'KKKKKKKKKK',2),
+(5, 'Haverj kyanq', 'QQQQQQQQ',3);
+
+SELECT * FROM books;
+
+INSERT INTO author
+VALUES 
+(1, 'Raffi','65'),
+(2, 'Hovhannes Tumanyan','58'),
+(3, 'Hovhannes Shiraz','60');
+
+SELECT * FROM author

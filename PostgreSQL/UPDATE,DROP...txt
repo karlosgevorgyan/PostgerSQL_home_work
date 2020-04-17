@@ -1,0 +1,21 @@
+SELECT * FROM teacher
+
+
+
+INSERT INTO teacher VALUES(
+1,'AAA', 'BBB'
+);
+
+
+
+UPDATE teacher
+SET firs_name = 'KKK', last_name = 'OOO'
+
+
+
+DELETE FROM teacher
+
+
+TRUNCATE TABLE teacher
+
+

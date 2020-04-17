@@ -1,0 +1,45 @@
+SELECT car_name,company_name,models,car_date,car_color,car_country,engine,last_name
+FROM car
+JOIN model ON car.car_id = model.fk_model_id
+JOIN owners ON car.car_id = owners.owner_id;
+
+
+SELECT last_name,first_name, car_name,models
+FROM car
+JOIN model ON car.car_id = model.fk_model_id
+JOIN owners ON car.car_id = owners.owner_id
+WHERE age <= 40;
+
+
+SELECT age, last_name, first_name, car_name, models, car_color, car_date
+FROM car
+JOIN model ON car_id = fk_model_id
+JOIN owners ON car_id = owner_id
+WHERE fk_model_id = 2 OR car_name = 'Mersedes'
+LIMIT 5;
+
+
+SELECT DISTINCT age, last_name, first_name, car_name, models, car_color, car_date
+FROM car
+JOIN model ON car_id = fk_model_id
+JOIN owners ON car_id = owner_id
+
+SELECT MIN(age)
+FROM owners
+
+SELECT * FROM model
+WHERE car_country = 'Germany'
+
+
+SELECT car_name FROM car
+WHERE car_name LIKE 'M%'
+
+SELECT COUNT(owner_id)
+FROM owners
+
+SELECT car_name
+FROM car
+UNION ALL
+SELECT models
+FROM model
+

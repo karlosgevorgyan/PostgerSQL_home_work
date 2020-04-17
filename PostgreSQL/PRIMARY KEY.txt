@@ -1,0 +1,23 @@
+CREATE TABLE chairs
+(
+	chair_id serial PRIMARY KEY,
+	chair_name varchar,
+	dean varchar
+);
+
+
+--или
+CREATE TABLE chairs
+(
+	chair_id serial,
+	chair_name varchar,
+	dean varchar
+	
+	CONSTRAINT chair_id_key PRIMARY KEY (chair_id)
+);
+
+ALTER TABLE chairs
+DROP CONSTANT chair_id_key
+
+ALTER TABLE chairs
+ADD PRIMARY KEY (chair_id)

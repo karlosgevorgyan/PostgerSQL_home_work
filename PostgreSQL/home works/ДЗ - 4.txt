@@ -1,0 +1,54 @@
+--1. Создать таблицу teacher с полями teacher_id serial,
+--   first_name varchar, last_name varchar, birthday date,
+--   phone varchar,title varchar
+
+CREATE TABLE teachers  (
+	teacher_id serial,
+	first_name VARCHAR(255) NOT NULL,
+	last_name VARCHAR(255) NOT NULL,
+	birthday date,
+	phone VARCHAR(255) NOT NULL,
+	title VARCHAR(255) NOT NULL
+);
+
+--2. Добавить в таблицу после создания колонку middle_name varchar
+ALTER TABLE teachers
+ADD COLUMN middle_name VARCHAR(255) NOT NULL;
+
+--3. Удалить колонку middle_name
+ALTER TABLE teachers
+DROP COLUMN middle_name;
+
+--4. Переименовать колонку birthday в birth_date
+ALTER TABLE teachers
+RENAME birthday TO birth_date;
+
+--5. Изменить тип данных колонки phone на varchar(32)
+ALTER TABLE teachers
+ALTER COLUMN phone SET DATA TYPE varchar(32);
+
+--6. Создать таблицу exam с полями exam_id serial, 
+--   exam_name varchar(256), exam_date date
+CREATE TABLE exams(
+	exam_id serial,
+	exam_name varchar(256),
+	exam_date date
+);
+
+
+--7. Вставить три любых записи с автогенерацией идентификатора
+INSERT INTO exams (exam_name,exam_date)
+VALUES
+(1,'kkk','19.06.1994'),
+(2,'ggg','19.06.1995'),
+(13'aaa','19.06.1996');
+
+
+--8. Посредством полной выборки убедиться,
+--   что данные были вставлены нормальнои идентификаторы
+--   были сгенерированы с инкрементом
+SELECT * FROM exams;
+
+--9. Удалить все данные из таблицы со сбросом
+--   идентификатор в исходное состояние
+TRUNCATE TABLE exams

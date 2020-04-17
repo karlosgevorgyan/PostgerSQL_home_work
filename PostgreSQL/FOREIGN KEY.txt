@@ -1,0 +1,34 @@
+CREATE TABLE publisher
+(
+	publisher_id int,
+	publihser_name varchar(128) NOT NULL,
+	address text,
+	
+	CONSTRAINT PK_pub_pub_id PRIMARY KEY (publisher_id)
+
+);
+
+CREATE TABLE books
+(
+	book_id int,
+	title text NOT NULL,
+	apublisher_id int,
+	publisher_id int,
+	
+	CONSTRAINT PK_book_book_id PRIMARY KEY (book_id),
+	CONSTRAINT FK_book_pub FOREIGN KEY (publisher_id) REFERENCES publisher(publisher_id)
+);
+
+
+INSERT INTO publisher
+VALUES
+(1,'aaaaaaaaaa''A', 'NY'),
+(2,'BBBBBBBBBB''A', 'NY'),
+(3,'CCCCCCCCCC''A', 'USA'),
+(4,'DDDDDDDDDD''A', 'RU')
+
+INSERT INTO books
+VALUES
+(1,'hdagu', '65239', 10);
+
+TRUNCATE TABLE books;
